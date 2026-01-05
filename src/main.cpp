@@ -1,17 +1,12 @@
-#include <iostream>
-#include <vector>
-#include <string>
-#include <opencv2/opencv.hpp>
+#include <QApplication>
 
-int main() {
-    std::vector<std::string> msg = {"Hello", "C++", "World", "from", "VSCode", "Template!"};
+#include "ui/MainWindow.h"
 
-    for (const auto& word : msg) {
-        std::cout << word << " ";
-    }
-    std::cout << std::endl;
+int main(int argc, char *argv[]) {
+    QApplication app(argc, argv);
 
-    std::cout << "OpenCV Version: " << CV_VERSION << std::endl;
+    MainWindow mainWindow;
+    mainWindow.show();
 
-    return 0;
+    return app.exec();
 }
