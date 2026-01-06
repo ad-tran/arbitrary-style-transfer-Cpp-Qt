@@ -2,26 +2,22 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Debug (LLDB)",
+            "name": "Debug App (Debug Build)",
             "type": "lldb",
             "request": "launch",
-            "program": "${workspaceFolder}/build/style_transfer_app",
+            "program": "${workspaceFolder}/build/debug/style_transfer_app",
             "args": [],
             "cwd": "${workspaceFolder}",
-            "preLaunchTask": "CMake: build"
+            "preLaunchTask": "CMake: build (Debug)"
         },
         {
-            "name": "Debug (GDB)",
-            "type": "cppdbg",
+            "name": "Debug App (Release Build)",
+            "type": "lldb",
             "request": "launch",
-            "program": "${workspaceFolder}/build/style_transfer_app",
+            "program": "${workspaceFolder}/build/release/style_transfer_app",
             "args": [],
-            "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
-            "environment": [],
-            "externalConsole": false,
-            "MIMode": "gdb",
-            "preLaunchTask": "CMake: build"
+            "preLaunchTask": "CMake: build (Release)"
         }
     ]
 }

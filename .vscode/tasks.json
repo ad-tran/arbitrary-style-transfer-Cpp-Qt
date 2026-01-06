@@ -2,14 +2,14 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "CMake: configure",
+            "label": "CMake: configure (Debug)",
             "type": "shell",
             "command": "cmake",
             "args": [
                 "-S",
                 ".",
                 "-B",
-                "build",
+                "build/debug",
                 "-DCMAKE_BUILD_TYPE=Debug",
                 "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON"
             ],
@@ -17,26 +17,52 @@
             "problemMatcher": []
         },
         {
-            "label": "CMake: build",
+            "label": "CMake: configure (Release)",
+            "type": "shell",
+            "command": "cmake",
+            "args": [
+                "-S",
+                ".",
+                "-B",
+                "build/release",
+                "-DCMAKE_BUILD_TYPE=Release",
+                "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON"
+            ],
+            "group": "build",
+            "problemMatcher": []
+        },
+        {
+            "label": "CMake: build (Debug)",
             "type": "shell",
             "command": "cmake",
             "args": [
                 "--build",
-                "build"
+                "build/debug"
             ],
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
+            "group": "build",
             "problemMatcher": [
                 "$gcc"
             ],
-            "dependsOn": "CMake: configure"
+            "dependsOn": "CMake: configure (Debug)"
         },
         {
-            "label": "Run",
+            "label": "CMake: build (Release)",
             "type": "shell",
-            "command": "./build/style_transfer_app",
+            "command": "cmake",
+            "args": [
+                "--build",
+                "build/release"
+            ],
+            "group": "build",
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "dependsOn": "CMake: configure (Release)"
+        },
+        {
+            "label": "Run (Debug)",
+            "type": "shell",
+            "command": "./build/debug/style_transfer_app",
             "group": {
                 "kind": "test",
                 "isDefault": true
@@ -48,7 +74,21 @@
                 "panel": "shared"
             },
             "problemMatcher": [],
-            "dependsOn": "CMake: build"
+            "dependsOn": "CMake: build (Debug)"
+        },
+        {
+            "label": "Run (Release)",
+            "type": "shell",
+            "command": "./build/release/style_transfer_app",
+            "group": "test",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared"
+            },
+            "problemMatcher": [],
+            "dependsOn": "CMake: build (Release)"
         }
     ]
 }
